@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add new fitness record</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness record management system</h1>
+        <hr>
+        <h3>New Fitness Record</h3>
+        <form action="#" th:action="@{/save}" th:object="${fitnessRecord}" method="POST">
+            <input placeholder="Date(yyyy-mm-dd)" type="text" id="recordDate" 
+                th:field="*{date}" class="form-control mb-4" style="width: 300px;">
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <input placeholder="Exercise name" type="text" id="recordExerciseName" 
+                th:field="*{exerciseName}" class="form-control mb-4" style="width: 300px;">
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <input placeholder="Time spent(in minutes)" type="text" id="recordTimeSpent" 
+                th:field="*{timeSpent}" class="form-control mb-4" style="width: 300px;">
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <br>
+            <button type="submit" class="btn btn-info"> Save record </button>
+        </form>
+        <hr>
+        <a href="">Back to fitness record list</a>
+    </div>
+</body>
+</html>

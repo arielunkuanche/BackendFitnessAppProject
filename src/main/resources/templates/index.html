@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fitness records</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+
+    <div class="container">
+        <h1> Fitness records</h1>
+        <br>
+        <a th:href="@{/showAddForm}" class="btn btn-info">Adding new record</a>
+        <hr>
+        <table class="table table-striped" border="1">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Exercise name</th>
+                    <th>Time spent (mins)</th>
+                    <!-- <th>Category</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="record :${listRecords} ">
+                    <td th:text="${record.date}"></td>
+                    <td th:text="${record.exerciseName}"></td>
+                    <td th:text="${record.timeSpent}"></td>
+                    <!-- <td th:text="${record.category}"></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
