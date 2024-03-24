@@ -10,7 +10,7 @@
     <div class="container">
         <h1> Fitness records</h1>
         <br>
-        <a th:href="@{/showAddForm}" class="btn btn-info">Adding new record</a>
+        <a th:href="@{/showAddForm}" class="btn btn-info">To add new record</a>
         <hr>
         <table class="table table-striped" border="1">
             <thead>
@@ -18,7 +18,8 @@
                     <th>Date</th>
                     <th>Exercise name</th>
                     <th>Time spent (mins)</th>
-                    <!-- <th>Category</th> -->
+                    <th>Training area</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +27,11 @@
                     <td th:text="${record.date}"></td>
                     <td th:text="${record.exerciseName}"></td>
                     <td th:text="${record.timeSpent}"></td>
-                    <!-- <td th:text="${record.category}"></td> -->
+                    <td th:text="${record.area.areaName}"></td>
+                    <td>
+                        <a th:href="@{/update/{id}(id=${record.id})}" class="btn btn-primary">Update</a>
+                        <a th:href="@{/delete/{id}(id=${record.id})}" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

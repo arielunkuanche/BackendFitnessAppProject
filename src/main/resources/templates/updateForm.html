@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add new fitness record</title>
+    <title>Update fitness record</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
@@ -9,8 +9,11 @@
     <div class="container">
         <h1>Fitness record management</h1>
         <hr>
-        <h3>New Fitness Record</h3>
-        <form action="#" th:action="@{/save}" th:object="${fitnessRecord}" method="POST">
+        <h3>Update Fitness Record</h3>
+        <form action="#" th:action="@{../save}" th:object="${fitnessRecord}" method="POST">
+            <!-- Add hidden form field to handle update -->
+            <input type="hidden" id="id" th:field="*{id}" class="form-control mb-4" style="width: 300px;">
+
             <input placeholder="Date(yyyy-mm-dd)" type="text" id="recordDate" 
                 th:field="*{date}" class="form-control mb-4" style="width: 300px;">
             <div style="clear: both; display: block; height: 10px;"></div>
@@ -24,9 +27,8 @@
                 <option th:each="area: ${areas}" th:value="${area.areaId}" th:text="${area.areaName}"></option>
             </select>
             <div style="clear: both; display: block; height: 10px;"></div>
-
             <br>
-            <button type="submit" class="btn btn-info"> Save record </button>
+            <button type="submit" class="btn btn-info"> Update record </button>
         </form>
         <hr>
         <a th:href="@{/}">Back to fitness record list</a>

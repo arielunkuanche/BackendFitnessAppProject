@@ -3,16 +3,20 @@ package springboot.dailyfitness.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 import springboot.dailyfitness.domain.FitnessRecord;
+import springboot.dailyfitness.repository.AreaRepository;
 import springboot.dailyfitness.repository.FitnessRecordRepository;
 
 @Controller
 public class DailyFitnessController {
     @Autowired
-    public FitnessRecordRepository frRepository;
+    private FitnessRecordRepository frRepository;
+    @Autowired
+    private AreaRepository aRepository;
 
     // display lists of records
     @GetMapping("/")
@@ -26,6 +30,7 @@ public class DailyFitnessController {
     @GetMapping("/showAddForm")
     public String addForm(Model model){
         model.addAttribute("fitnessRecord", new FitnessRecord());
+        model.addAttribute("areas", aRepository.findAll());
         return "addForm"; 
     }
 
@@ -36,6 +41,18 @@ public class DailyFitnessController {
         return "redirect:/";
     }
 
+    // update record to database by id
+    @GetMapping("/update/{id}")
+    public String updateRecord(@PathVariable("id")Long id, Model model){
+        model.addAttribute("fitnessRecord",frRepository.findById(id));
+        model.addAttribute("areas", aRepository.findAll());
+        return "updateForm";
+    }
 
-
+    // delete record to database by id
+    @GetMapping("/delete/{id}")
+    public String deleteRecord(@PathVariable("id")Long id){
+        frRepository.deleteById(id);
+        return "redirect:/";
+    }
 }

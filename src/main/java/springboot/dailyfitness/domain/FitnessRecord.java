@@ -21,11 +21,19 @@ public class FitnessRecord {
     private String exerciseName;
     private int timeSpent;
 
-    // @ManyToOne
-    // @JoinColumn(name = "categoryId")
-    // private Category category;
+    @ManyToOne
+    @JoinColumn(name = "areaId")
+    private Area area;
 
-
+    
+    // public FitnessRecord(){}
+    // public FitnessRecord(long id, LocalDate date, String exerciseName, int timeSpent, Area area) {
+    //     this.id = id;
+    //     this.date = date;
+    //     this.exerciseName = exerciseName;
+    //     this.timeSpent = timeSpent;
+    //     this.area = area;
+    // }
     public long getId() {
         return id;
     }
@@ -51,13 +59,19 @@ public class FitnessRecord {
         this.timeSpent = time_spent;
     }
 
-    // public Category getCategory() {
-    //     return category;
-    // }
-    // public void setCategory(Category catelog) {
-    //     this.category = catelog;
-    // }
+    public Area getArea() {
+        return area;
+    }
+    public void setArea(Area area) {
+        this.area= area;
+    }
 
-    
+    // @Override
+    // public String toString(){
+    //     if(area != null)
+    //         return "Fitness record: " + date + exerciseName + timeSpent + area.getAreaName();
+    //     else
+    //         return "Fitness record: " + date + exerciseName + timeSpent;
+    // }
 
 }
