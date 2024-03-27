@@ -32,7 +32,7 @@ public class DailyFitnessController {
     public String viewHomePage(Model model){
         // model.addAttribute("listRecords", frRepository.findAll());
         // return "index";
-        return findPaginated(1, model);
+        return findPaginated(1, "exerciseName", "asc", model);
     }
 
     // create model attribute to bind form data
@@ -67,17 +67,25 @@ public class DailyFitnessController {
     }
 
     // get paginated data page
+    // sorting example url: /page/1?sortField=exerciseName&sortDir=asc
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable("pageNo") int pageNo, Model model){
+    public String findPaginated(@PathVariable("pageNo") int pageNo, 
+                                @RequestParam("sortField") String sortField,
+                                @RequestParam("sortDir") String sortDir,
+                                Model model){
         int pageSize = 5;
 
-        Page<FitnessRecord> page = fitnessRecordService.findPaginated(pageNo, pageSize);
+        Page<FitnessRecord> page = fitnessRecordService.findPaginated(pageNo, pageSize, sortField, sortDir);
         List<FitnessRecord> listRecords = page.getContent();
 
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("listRecords", listRecords);
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc")? "desc":"asc");
         return "index";
     }
 

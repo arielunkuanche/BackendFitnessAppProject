@@ -10,6 +10,6 @@ import springboot.dailyfitness.domain.FitnessRecord;
 public interface FitnessRecordService {
     
     @EntityGraph(attributePaths = "area")
-    Page<FitnessRecord> findPaginated(int pageNo, int pageSize);
+    Page<FitnessRecord> findPaginated(int pageNo, int pageSiz, String sortField, String sortDirection);
 
 }
