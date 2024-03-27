@@ -23,14 +23,6 @@ public class Area {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     private List<FitnessRecord> records;
 
-    // public Area(){}
-
-    // public Area(Long areaId, String areaName, List<FitnessRecord> records) {
-    //     this.areaId = areaId;
-    //     this.areaName = areaName;
-    //     this.records = records;
-    // }
-
     public Long getAreaId() {
         return areaId;
     }
@@ -54,10 +46,5 @@ public class Area {
     public void setRecords(List<FitnessRecord> records) {
         this.records = records;
     }
-
-    // @Override
-    // public String toString(){
-    //     return "Training area: " + areaId + areaName;
-    // }
 
 }

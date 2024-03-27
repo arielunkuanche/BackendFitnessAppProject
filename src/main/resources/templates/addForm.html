@@ -3,7 +3,7 @@
 <head>
     <title>Add new fitness record</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
     <div class="container">
@@ -20,7 +20,7 @@
             <input placeholder="Time spent(in minutes)" type="text" id="recordTimeSpent" 
                 th:field="*{timeSpent}" class="form-control mb-4" style="width: 300px;">
             <div style="clear: both; display: block; height: 10px;"></div>
-            <select id="arealist" th:field="*{area}"class="form-control">
+            <select id="arealist" th:field="*{area}"class="form-control" style="width: 300px;">
                 <option th:each="area: ${areas}" th:value="${area.areaId}" th:text="${area.areaName}"></option>
             </select>
             <div style="clear: both; display: block; height: 10px;"></div>
