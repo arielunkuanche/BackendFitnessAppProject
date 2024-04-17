@@ -23,6 +23,14 @@ public class Area {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "area")
     private List<FitnessRecord> records;
 
+    public Area() {
+    }
+
+    public Area(String areaName) {
+        super();
+        this.areaName = areaName;
+    }
+
     public Long getAreaId() {
         return areaId;
     }

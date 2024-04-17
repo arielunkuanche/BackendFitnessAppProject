@@ -4,13 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import org.springframework.ui.Model;
 
 import springboot.dailyfitness.domain.FitnessRecord;
@@ -27,6 +32,11 @@ public class DailyFitnessController {
     @Autowired
     private FitnessRecordService fitnessRecordService;
 
+    // Show all students
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
     // display lists of records
     @GetMapping("/")
     public String viewHomePage(Model model){
@@ -60,8 +70,9 @@ public class DailyFitnessController {
     }
 
     // delete record to database by id
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete/{id}")
-    public String deleteRecord(@PathVariable("id")Long id){
+    public String deleteRecord(@PathVariable("id")Long id, Model model){
         frRepository.deleteById(id);
         return "redirect:/";
     }
